@@ -6,11 +6,41 @@ const PORT = process.env.PORT || 3002; //mongodb's port or our port.
 const uri = process.env.MONGO_URL;
 const { HoldingsModel } = require("./model/HoldingsModel");
 const { PositionsModel } = require('./model/PositionsModel');
+const {OrdersModel} = require('./model/OrdersModel');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+//cors and bodyParser middleware.
+app.use(cors());
+app.use(bodyParser.json());
 
 app.listen(PORT, () => {
     console.log("App is running");
     mongoose.connect(uri);   //database connection
     console.log("DB Connected");
+});
+
+//Fetch data from DB.
+app.get('/allHoldings', async(req, res )=>{
+    let allHoldings = await HoldingsModel.find({}); //get all holdings data from DB.
+    res.json(allHoldings); //return as json response
+});
+
+app.get('/allPositions', async(req, res )=>{
+    let allPositions = await PositionsModel.find({}); //get all positions data from DB.
+    res.json(allPositions); //return as  json response
+})
+
+app.post('/newOrder', async(req, res)=>{
+   let newOrder = await OrdersModel({
+     name : req.body.name,
+     qty : req.body.qty,
+     price : req.body.price,
+     mode : req.body.mode    
+   });
+
+   newOrder.save();
+   res.send("Order saved");
 });
 
 //Temporary route to add data to DB.
