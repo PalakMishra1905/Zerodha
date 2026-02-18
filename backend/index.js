@@ -13,9 +13,9 @@ const cookieParser = require('cookie-parser');
 const { login, register, logout } = require('./Controller/AuthController');
 
 //cors and bodyParser middleware.
-const allowedOrgins = ["http://localhost:3000", "http://localhost:3001"];
+// const allowedOrgins = ["http://localhost:3000", "http://localhost:3001"];
 
-app.use(cors({ origin:allowedOrgins, credentials: true }));
+app.use(cors({ origin:true, credentials: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
@@ -29,6 +29,10 @@ mongoose.connect(uri).then(() => {
     console.log(error);
 });
 
+//root route.
+app.get("/", (req, res) => {
+  res.send("Backend API is running");
+});
 
 //Fetch data from DB.
 app.get('/allHoldings', async (req, res) => {
