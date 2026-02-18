@@ -36,3 +36,20 @@ A full-featured trading application that allows users to **simulate buying and s
 ```bash
 git clone https://github.com/PalakMishra1905/Zerodha.git
 cd Zerodha
+```
+
+### 2. Install dependencies
+
+Navigate to backend:
+
+```bash
+cd backend
+npm install
+```
+
+Then start the server:
+
+```bash
+npm start
+```
+
