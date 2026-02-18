@@ -4,6 +4,21 @@ A full-featured trading application that allows users to **simulate buying and s
 
 ---
 
+## 🌐 Live Demo
+
+Try the deployed application:
+
+- 🔧 **Backend API**  
+  https://zerodha-backend-3-fjez.onrender.com/
+
+- 💻 **Frontend Application**  
+  https://zerodha-frontend-3.onrender.com/
+
+- 📊 **Trading Dashboard**  
+  https://zerodha-dashboard-2-foql.onrender.com/
+
+---
+
 ## 🚀 Features
 
 - 📈 Interactive dashboard for viewing live (simulated) market data  
@@ -11,10 +26,12 @@ A full-featured trading application that allows users to **simulate buying and s
 - 📊 Real-time portfolio tracking and history  
 - 🧠 Trend charts and data visualizations  
 - 🔐 Simple authentication and session management  
-- 💻 Built with MERN stack:  
-  - **React** (frontend)  
-  - **Node.js + Express** (backend)  
-  - **MongoDB** (database)
+- 💻 Built with MERN stack  
+
+### MERN Stack
+- **React** (frontend)  
+- **Node.js + Express** (backend)  
+- **MongoDB** (database)
 
 ---
 
@@ -25,31 +42,15 @@ A full-featured trading application that allows users to **simulate buying and s
 | Frontend | React, HTML, CSS, Bootstrap |
 | Backend | Node.js, Express |
 | Database | MongoDB |
-| Deployment | Your choice (Heroku, Vercel, Netlify, etc.) |
+| Deployment | Render |
 
 ---
 
 ## 📦 Installation
 
-### 1. Clone the repo
+### 1️⃣ Clone the repository
 
 ```bash
 git clone https://github.com/PalakMishra1905/Zerodha.git
 cd Zerodha
-```
-
-### 2. Install dependencies
-
-Navigate to backend:
-
-```bash
-cd backend
-npm install
-```
-
-Then start the server:
-
-```bash
-npm start
-```
 
