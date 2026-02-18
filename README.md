@@ -1,6 +1,6 @@
 # Zerodha — Trading Simulator
 
-A full-featured trading application that allows users to **simulate buying and selling of stocks**, **visualize market trends**, and **track their portfolio in real time** — all built with modern web technologies such as **React, Node.js, Express, and MongoDB**. :contentReference[oaicite:1]{index=1}
+A full-featured trading application that allows users to **simulate buying and selling of stocks**, **visualize market trends**, and **track their portfolio in real time** — all built with modern web technologies such as **React, Node.js, Express, and MongoDB**.
 
 ---
 
