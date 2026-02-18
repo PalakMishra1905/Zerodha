@@ -6,42 +6,61 @@ const PORT = process.env.PORT || 3002; //mongodb's port or our port.
 const uri = process.env.MONGO_URL;
 const { HoldingsModel } = require("./model/HoldingsModel");
 const { PositionsModel } = require('./model/PositionsModel');
-const {OrdersModel} = require('./model/OrdersModel');
+const { OrdersModel } = require('./model/OrdersModel');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const { login, register, logout } = require('./Controller/AuthController');
 
 //cors and bodyParser middleware.
-app.use(cors());
-app.use(bodyParser.json());
+const allowedOrgins = ["http://localhost:3000", "http://localhost:3001"];
 
-app.listen(PORT, () => {
-    console.log("App is running");
-    mongoose.connect(uri);   //database connection
+app.use(cors({ origin:allowedOrgins, credentials: true }));
+app.use(bodyParser.json());
+app.use(cookieParser());
+
+//database connection
+mongoose.connect(uri).then(() => {
     console.log("DB Connected");
+    app.listen(PORT, () => {
+        console.log(`Server started on port : ${PORT}`);
+    });
+}).catch((error)=>{
+    console.log(error);
 });
 
+
 //Fetch data from DB.
-app.get('/allHoldings', async(req, res )=>{
+app.get('/allHoldings', async (req, res) => {
     let allHoldings = await HoldingsModel.find({}); //get all holdings data from DB.
     res.json(allHoldings); //return as json response
 });
 
-app.get('/allPositions', async(req, res )=>{
+app.get('/allPositions', async (req, res) => {
     let allPositions = await PositionsModel.find({}); //get all positions data from DB.
     res.json(allPositions); //return as  json response
 })
 
-app.post('/newOrder', async(req, res)=>{
-   let newOrder = await OrdersModel({
-     name : req.body.name,
-     qty : req.body.qty,
-     price : req.body.price,
-     mode : req.body.mode    
-   });
+app.post('/newOrder', async (req, res) => {
+    //create new model
+    let newOrder = await OrdersModel({
+        name: req.body.name,
+        qty: req.body.qty,
+        price: req.body.price,
+        mode: req.body.mode
+    });
 
-   newOrder.save();
-   res.send("Order saved");
+    newOrder.save();  //save in DB
+    res.send("Order saved"); //send res.
 });
+
+//login
+app.post('/login', login);
+
+app.post('/register', register);
+
+app.post('/logout', logout);
+
 
 //Temporary route to add data to DB.
 
